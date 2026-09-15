@@ -37,7 +37,7 @@ El motor de búsqueda fue desarrollado para resolver consultas en lenguaje natur
    Al iniciar la aplicación, `Pandas` lee el archivo `productos.xlsx`, estandariza los nombres de columnas a minúsculas, elimina caracteres especiales/espacios y reemplaza valores nulos (`NaN`) para garantizar compatibilidad estricta con JSON y evitar errores HTTP 500.
 
 2. **Procesamiento de Lenguaje Natural (NLP Local):**
-   * **Intención Explícita vs. Búsqueda Específica:** El servidor identifica si la consulta requiere un listado global (ej. *"ver stock"*, *"inventario"*) o un producto puntual (ej. *"Mouse logic"*, *"teklado logy"*).
+   * **Intención Explícita vs. Búsqueda Específica:** El servidor identifica si la consulta requiere un listado global (ej. *"ver stock"*, *"inventario"*) o un producto puntual (ej. *"Mouse logic"*, *"teclado logi"*).
    * **Lematización y Plurales:** Algoritmo que procesa palabras clave reduciendo sufijos (*-s*, *-es*) para emparejar términos de búsqueda con los campos del catálogo.
    * **Tolerancia a Errores Tipográficos:** Evalúa la similitud fonética y de texto entre palabras mediante subcadenas y comparaciones con `difflib` (umbral `≥ 0.60`), permitiendo encontrar marcas o modelos con errores de ortografía.
 
