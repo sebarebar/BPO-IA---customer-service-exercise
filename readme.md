@@ -59,5 +59,5 @@ El motor de búsqueda fue desarrollado para resolver consultas en lenguaje natur
 
 ### 1. Clonar o Descargar el Proyecto
 ```bash
-git clone <URL_DE_TU_REPOSITORIO>
+git clone <https://github.com/sebarebar/BPO-IA---customer-service-exercise.git>
 cd customer_service
