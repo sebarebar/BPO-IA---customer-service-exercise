@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Virtual - Catálogo</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+
+<body>
+
+    <div class="app-layout">
+        <!-- IZQUIERDA: Chat -->
+        <div class="chat-container">
+            <div class="chat-header">Asistente Virtual</div>
+            <div class="chat-box" id="chatBox"></div>
+
+            <button class="btn-clear" onclick="limpiarHistorial()">🗑️ Borrar Historial</button>
+
+            <div class="input-box">
+                <input type="text" id="userInput" placeholder="Ej: monitores, teclados, laptop..."
+                    onkeypress="if(event.key === 'Enter') enviarMensaje()">
+                <button type="button" id="micBtn" onclick="toggleReconocimientoVoz()" title="Usar micrófono">🎤</button>
+                <button type="button" onclick="enviarMensaje()">Enviar</button>
+            </div>
+        </div>
+
+        <!-- DERECHA: Productos Encontrados (Cards) -->
+        <div class="products-container">
+            <div class="products-header">
+                <span id="productsHeaderTitle">Resultados de Búsqueda</span>
+                <div class="filter-controls">
+                    <label for="sortSelect">Ordenar por:</label>
+                    <select id="sortSelect" onchange="aplicarOrdenamiento()">
+                        <option value="default">Por defecto</option>
+                        <option value="precio-asc">Precio: Menor a Mayor</option>
+                        <option value="precio-desc">Precio: Mayor a Menor</option>
+                        <option value="stock-desc">Mayor Stock Disponible</option>
+                        <option value="stock-asc">Menor Stock Disponible</option>
+                    </select>
+                </div>
+            </div>
+            <!-- ESTRUCTURA REPARADA: El contenedor cardsGrid vuelve a estar dentro de products-container -->
+            <div class="cards-grid" id="cardsGrid">
+                <p style="color: #a0aec0; grid-column: 1/-1;">Escribe en el chat o realiza una búsqueda para ver los
+                    productos aquí.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón Flotante para Alternar Modo Oscuro / Claro -->
+    <button id="themeToggleBtn" onclick="toggleTheme()" class="theme-toggle-btn" title="Cambiar tema">
+        🌙
+    </button>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,354 @@
+:root {
+    /* MODO CLARO VIVO Y PROFESIONAL */
+    --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    --panel-bg: #ffffff;
+    --panel-border: rgba(226, 232, 240, 0.8);
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --header-bg: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    --header-text: #ffffff;
+    --user-msg-bg: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+    --user-msg-text: #ffffff;
+    --bot-msg-bg: #f1f5f9;
+    --bot-msg-text: #0f172a;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --card-hover-shadow: 0 12px 20px -5px rgba(99, 102, 241, 0.2);
+    --card-title: #0f172a;
+    --price-color: #059669;
+    --stock-color: #2563eb;
+    --btn-primary: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    --btn-danger: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+    --btn-mic: #64748b;
+    --input-bg: #f8fafc;
+    --input-border: #cbd5e1;
+    --input-focus: #6366f1;
+    --scrollbar-thumb: #cbd5e1;
+}
+
+[data-theme="dark"] {
+    /* MODO OSCURO NEÓN MORADO CON EFECTOS RGB */
+    --bg-gradient: radial-gradient(circle at 50% 0%, #1e112a 0%, #0d0714 100%);
+    --panel-bg: rgba(23, 15, 38, 0.85);
+    --panel-border: rgba(168, 85, 247, 0.25);
+    --text-primary: #f3e8ff;
+    --text-secondary: #c084fc;
+    --header-bg: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    --header-text: #ffffff;
+    --user-msg-bg: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    --user-msg-text: #ffffff;
+    --bot-msg-bg: rgba(45, 27, 78, 0.6);
+    --bot-msg-text: #f3e8ff;
+    --card-bg: rgba(30, 19, 50, 0.7);
+    --card-border: rgba(168, 85, 247, 0.3);
+    --card-shadow: 0 8px 32px 0 rgba(112, 26, 117, 0.25);
+    --card-hover-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 10px rgba(236, 72, 153, 0.3);
+    --card-title: #ffffff;
+    --price-color: #34d399;
+    --stock-color: #38bdf8;
+    --btn-primary: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    --btn-danger: linear-gradient(135deg, #f43f5e 0%, #9f1239 100%);
+    --btn-mic: #581c87;
+    --input-bg: rgba(15, 9, 26, 0.8);
+    --input-border: rgba(168, 85, 247, 0.4);
+    --input-focus: #c084fc;
+    --scrollbar-thumb: #581c87;
+}
+
+* {
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+}
+
+/* Layout Principal de 2 Columnas */
+.app-layout {
+    display: flex;
+    gap: 20px;
+    height: calc(100vh - 40px);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Panel Izquierdo: Chat */
+.chat-container {
+    width: 40%;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.chat-header {
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 16px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box {
+    flex: 1;
+    padding: 18px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Barras de Desplazamiento */
+.chat-box::-webkit-scrollbar, .cards-grid::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-box::-webkit-scrollbar-thumb, .cards-grid::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 10px;
+}
+
+.message {
+    padding: 12px 16px;
+    border-radius: 14px;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.45;
+    word-break: break-word;
+    animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.user-message {
+    background: var(--user-msg-bg);
+    color: var(--user-msg-text);
+    align-self: flex-end;
+    border-bottom-right-radius: 3px;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+.bot-message {
+    background: var(--bot-msg-bg);
+    color: var(--bot-msg-text);
+    align-self: flex-start;
+    border-bottom-left-radius: 3px;
+    border: 1px solid var(--panel-border);
+}
+
+.input-box {
+    display: flex;
+    padding: 14px;
+    border-top: 1px solid var(--panel-border);
+    background: var(--panel-bg);
+    gap: 8px;
+}
+
+.input-box input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-primary);
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+}
+
+.input-box input:focus {
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+}
+
+.input-box button {
+    padding: 10px 16px;
+    background: var(--btn-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.input-box button:hover {
+    filter: brightness(1.1);
+}
+
+.input-box button#micBtn {
+    background: var(--btn-mic);
+}
+
+.input-box button#micBtn.escuchando {
+    background: #ef4444;
+    animation: pulso 1s infinite alternate;
+}
+
+.btn-clear {
+    position: absolute;
+    bottom: 72px;
+    right: 15px;
+    background: var(--btn-danger);
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    opacity: 0.9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-clear:hover {
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+/* Panel Derecho: Rejilla de Productos */
+.products-container {
+    width: 60%;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--panel-border);
+    padding-bottom: 12px;
+}
+
+.filter-controls {
+    font-size: 13px;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+}
+
+.filter-controls select {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.cards-grid {
+    flex: 1;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    align-content: start;
+    padding-right: 4px;
+}
+
+/* Estilos de las Cards de Productos */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--card-title);
+    margin-bottom: 8px;
+}
+
+.card-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--price-color);
+    margin-bottom: 6px;
+}
+
+.card-stock {
+    font-size: 12px;
+    color: var(--stock-color);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Botón Flotante para Alternar Tema */
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--panel-bg);
+    border: 2px solid var(--panel-border);
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(12deg);
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.5);
+}
+
+@keyframes pulso {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+}
